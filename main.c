@@ -15,8 +15,8 @@ int main(int argc, char *argv[]) {
 	printf("=============================================\n\n\n");
 	
 	//game
-	bingo_init();
 	//initialise bingo board
+	bingo_init();
 	bingo_print();
 	bingo_inputNum(5);
 	bingo_print();
