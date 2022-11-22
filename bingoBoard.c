@@ -16,14 +16,34 @@ int bingo_checkNum(int selNum)
 
 void bingo_init(void)
 {
-	int i, j;
-	int cnt = 1;
+	int i, j, k;
+	int randNum;
+	int maxNum = N_SIZE*N_SIZE;
+	
+	//numberStatus 값 초기화
+	for(i = 0; i < N_SIZE*N_SIZE; i++){
+		numberStatus[i] = -1;					
+	}
 	
 	for(i = 0; i < N_SIZE; i++){
 		for(j = 0; j < N_SIZE; j++){
-				numberStatus[cnt-1] = i * N_SIZE + j;				
-				bingoBoard[i][j] = cnt++;	
+			//randNum = 0~maxNum-1 임의의 값 설정
+			randNum = rand() % maxNum;
+			
+			for (k=0; k<N_SIZE*N_SIZE; k++)  { //0~24
+				if (numberStatus[k] == -1){
+					if(randNum ==0 ) {
+						break;
+					}
+					else{
+						randNum--;
+					}
+				}
 			}
+			bingoBoard[i][j] = k+1;	
+			numberStatus[k] = i * N_SIZE + j;				
+			maxNum--;
+		}
 	}
 }
 
