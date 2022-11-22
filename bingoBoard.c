@@ -6,6 +6,14 @@
 static int bingoBoard[N_SIZE][N_SIZE];
 static int numberStatus[N_SIZE * N_SIZE];
 
+int bingo_checkNum(int selNum)
+{
+	if (numberStatus[selNum-1] == BINGONUM_HOLE)
+		return BINGO_NUMSTATUS_ABSENT;
+		
+	return BINGO_NUMSTATUS_PRESENT;
+}
+
 void bingo_init(void)
 {
 	int i, j;
@@ -27,7 +35,7 @@ void bingo_print(void)
 	for(i = 0; i < N_SIZE; i++){
 		for(j = 0; j < N_SIZE; j++){
 			if(bingoBoard[i][j] == BINGONUM_HOLE)
-				printf("X\t");
+				printf("X\t ");
 			else 
 				printf("%d\t ", bingoBoard[i][j]);
 		}
